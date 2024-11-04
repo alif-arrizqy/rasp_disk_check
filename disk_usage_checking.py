@@ -57,10 +57,10 @@ def remote_main(ip, password):
                 if int(use[:-1]) > 70:
                     print("Disk usage is above 70%.")
                     # Reboot command
-                    print("Rebooting device.")
+                    print("Rebooting device.\n")
                     ssh.exec_command("sudo reboot")
                 else:
-                    print("Disk usage is below 70%.")
+                    print("Disk usage is below 70%.\n")
             
             except IndexError:
                 print("Failed to parse disk usage output.")
@@ -69,6 +69,7 @@ def remote_main(ip, password):
         print(f"SSH command failed: {e}")
     except Exception as e:
         print(f"Unexpected error: {e}")
+    print("\n")
 
 
 def create_ssh_client(ip, password):
