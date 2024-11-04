@@ -1,5 +1,7 @@
 import os
 import json
+import time
+import schedule
 from paramiko import SSHClient, MissingHostKeyPolicy, AuthenticationException, SSHException
 from dotenv import load_dotenv
 
@@ -79,6 +81,10 @@ def create_ssh_client(ip, password):
     ssh.connect(ip, username=SSH_USER, password=password)
     return ssh
 
+# Schedule the main function to run every 6 hours
+schedule.every(6).hours.do(main)
 
-if __name__ == "__main__":
-    main()
+# Run the scheduled tasks
+while True:
+    schedule.run_pending()
+    time.sleep(1)
